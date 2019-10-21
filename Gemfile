@@ -16,3 +16,4 @@ gemspec
 # gem 'byebug', group: [:development, :test]
 
 gem "devise", "~> 4"
+gem 'pwned', git: 'https://github.com/OddballGreg/pwned'
