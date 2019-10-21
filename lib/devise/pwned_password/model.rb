@@ -22,6 +22,7 @@ module Devise
         Devise::Models.config(self, :min_password_matches_warn)
         Devise::Models.config(self, :pwned_password_open_timeout)
         Devise::Models.config(self, :pwned_password_read_timeout)
+        Devise::Models.config(self, :proxy)
       end
 
       def pwned?
@@ -41,7 +42,8 @@ module Devise
         options = {
           "User-Agent" => "devise_pwned_password",
           read_timeout: self.class.pwned_password_read_timeout,
-          open_timeout: self.class.pwned_password_open_timeout
+          open_timeout: self.class.pwned_password_open_timeout,
+          proxy: self.class.proxy
         }
         pwned_password = Pwned::Password.new(password.to_s, options)
         begin
